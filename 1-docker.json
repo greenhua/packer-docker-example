@@ -1,0 +1,21 @@
+{
+    "builders":  [{
+        "type": "docker",
+        "image": "centos:latest",
+        "export_path": "image.tar"
+    }],
+    "provisioners":[
+    {
+            "type": "shell",
+            "inline": [
+                "yum -y update",
+                "yum -y  install -y ansible"
+            ]
+    },
+     {
+            "type": "ansible-local",
+            "playbook_file": "ansible/localhost.yml"
+        }
+    ]
+
+}
